@@ -1,0 +1,12 @@
+server:
+  port: 8881
+  servlet:
+    context-path: /
+security:
+  oauth2:
+    authorization:
+      jwt:
+        key-store: classpath:spring-oauth-jwt.jks
+        key-alias: spring-oauth-jwt
+        key-store-password: spring-oauth-store
+        key-password: spring-oauth-pass
