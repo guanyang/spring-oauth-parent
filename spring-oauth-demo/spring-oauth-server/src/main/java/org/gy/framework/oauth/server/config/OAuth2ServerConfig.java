@@ -33,7 +33,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private TokenStore tokenStore;
 
-    @Autowired
+    @Autowired(required = false)
     private AccessTokenConverter tokenConverter;
 
     @Autowired

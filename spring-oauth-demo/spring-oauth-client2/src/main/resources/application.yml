@@ -12,9 +12,10 @@ security:
       accessTokenUri: ${auth-server}/oauth/token
       userAuthorizationUri: ${auth-server}/oauth/authorize
     resource:
+      token-info-uri: ${auth-server}/oauth/check_token
 #      userInfoUri: ${auth-server}/api/user
-      jwt:
-        key-uri: ${auth-server}/oauth/token_key
+#      jwt:
+#        key-uri: ${auth-server}/oauth/token_key
 spring:
   thymeleaf:
     cache: false
