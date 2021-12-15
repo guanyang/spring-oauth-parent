@@ -1,7 +1,7 @@
 server:
   port: 8881
   servlet:
-    context-path: /
+    context-path: /auth
 security:
   oauth2:
     authorization:

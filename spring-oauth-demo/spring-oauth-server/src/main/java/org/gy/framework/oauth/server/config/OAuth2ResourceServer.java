@@ -19,10 +19,9 @@ public class OAuth2ResourceServer extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
-            .authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers("/api/**").authenticated()
+        http.requestMatchers()
+            .antMatchers("/api/**")
+            .and().authorizeRequests().anyRequest().authenticated()
             .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

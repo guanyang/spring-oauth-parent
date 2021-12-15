@@ -55,7 +55,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
             .authorizedGrantTypes("authorization_code", "password", "client_credentials", "refresh_token")
             .scopes("user_info")
             .autoApprove(false)
-            .redirectUris("http://localhost:8882/client/login", "http://localhost:8883/client/login")
+            .redirectUris("http://localhost:8882/client1/login", "http://localhost:8883/client2/login")
             .accessTokenValiditySeconds(3600)
             .refreshTokenValiditySeconds(7200);
     }

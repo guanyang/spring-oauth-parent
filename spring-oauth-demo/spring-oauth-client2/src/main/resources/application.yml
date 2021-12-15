@@ -1,9 +1,9 @@
-auth-server: http://localhost:8881
+auth-server: http://localhost:8881/auth
 server:
   port: 8883
   servlet:
 #    register-default-servlet: true
-    context-path: /client
+    context-path: /client2
 security:
   oauth2:
     client:

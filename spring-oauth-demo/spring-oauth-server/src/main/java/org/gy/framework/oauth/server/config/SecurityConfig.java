@@ -1,7 +1,6 @@
 package org.gy.framework.oauth.server.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,17 +19,16 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  * @author gy
  * @version 1.0.0
  */
-@Order(1)
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-            .antMatchers("/oauth/authorize", "/login")
-            .and().authorizeRequests().anyRequest().authenticated()
-            .and().formLogin().permitAll()
+        http.authorizeRequests()
+            .antMatchers("/oauth/authorize", "/login", "/static/**").permitAll()
+            .anyRequest().authenticated()
+            .and().formLogin()
             .and().csrf().disable();
     }
 
