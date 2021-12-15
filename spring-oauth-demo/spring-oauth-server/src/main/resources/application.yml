@@ -2,11 +2,22 @@ server:
   port: 8881
   servlet:
     context-path: /auth
-security:
-  oauth2:
-    authorization:
-      jwt:
-        key-store: classpath:spring-oauth-jwt.jks
-        key-alias: spring-oauth-jwt
-        key-store-password: spring-oauth-store
-        key-password: spring-oauth-pass
+#security:
+#  oauth2:
+#    authorization:
+#      jwt:
+#        key-store: classpath:spring-oauth-jwt.jks
+#        key-alias: spring-oauth-jwt
+#        key-store-password: spring-oauth-store
+#        key-password: spring-oauth-pass
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 5
+        max-idle: 10
+        max-wait: 2000ms
+        max-active: 20
+
