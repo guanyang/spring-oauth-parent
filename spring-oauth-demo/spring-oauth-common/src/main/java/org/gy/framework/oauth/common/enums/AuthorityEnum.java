@@ -11,13 +11,12 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum RoleEnum {
+public enum AuthorityEnum {
 
-    //角色定义
-    ADMIN("ADMIN"),
-    USER("USER"),
-    ANONYMOUS("ANONYMOUS");
+    //权限定义
+    ADMIN("admin"),
 
-    private final String role;
+    USER("user");
 
+    private final String authority;
 }

@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 /**
@@ -37,6 +38,9 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     private AccessTokenConverter tokenConverter;
 
     @Autowired
+    private TokenEnhancer tokenEnhancer;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
@@ -54,8 +58,10 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
             .secret(passwordEncoder.encode("secret"))
             .authorizedGrantTypes("authorization_code", "password", "client_credentials", "refresh_token")
             .scopes("user_info")
-            .autoApprove(false)
-            .redirectUris("http://localhost:8882/client1/login", "http://localhost:8883/client2/login")
+            .autoApprove(true)
+            .redirectUris("http://localhost:8882/client1/login", "http://localhost:8883/client2/login",
+                "http://localhost:3006", "http://localhost:3006/auth", "http://localhost:8000",
+                "http://localhost:8000/auth")
             .accessTokenValiditySeconds(3600)
             .refreshTokenValiditySeconds(7200);
     }
@@ -65,6 +71,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints.authenticationManager(authenticationManager)
             .userDetailsService(userDetailsService)
             .accessTokenConverter(tokenConverter)
+            .tokenEnhancer(tokenEnhancer)
             .tokenStore(tokenStore);
     }
 
