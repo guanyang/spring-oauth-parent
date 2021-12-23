@@ -20,7 +20,7 @@ public class OAuthClientSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .antMatcher("/**")
             .authorizeRequests()
-            .antMatchers("/", "/login**").permitAll()
+            .antMatchers("/", "/css/**", "/login**").permitAll()
             .anyRequest().authenticated();
     }
 }

@@ -7,6 +7,13 @@
 - spring-oauth-server：授权及资源服务器聚合
 - spring-oauth-github：github授权登录示例
 
+### 授权登录方式聚合
+- 参考工程：spring-oauth-client2
+- 支持多种授权登录方式
+  - 自定义AuthServer登录
+  - 微信网页授权登录
+  - github授权登录
+
 ### JWT加密生成jks文件
 #### 通过keytool生成jks文件
 ```

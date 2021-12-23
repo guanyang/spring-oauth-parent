@@ -1,12 +1,12 @@
 server:
   port: 8884
   servlet:
-    context-path: /client
+    context-path: /
 security:
   oauth2:
     client:
-      clientId: xxx
-      clientSecret: xxxx
+      clientId: 2c64c7edc5a8dc8847fd
+      clientSecret: dc5803f0b18c571c080e34d449086e66e39027e3
       accessTokenUri: https://github.com/login/oauth/access_token
       userAuthorizationUri: https://github.com/login/oauth/authorize
       clientAuthenticationScheme: header

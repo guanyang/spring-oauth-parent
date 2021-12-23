@@ -59,7 +59,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
             .authorizedGrantTypes("authorization_code", "password", "client_credentials", "refresh_token")
             .scopes("user_info")
             .autoApprove(true)
-            .redirectUris("http://localhost:8882/client1/login", "http://localhost:8883/client2/login",
+            .redirectUris("http://localhost:8882/client1/login", "http://localhost:8883/login/oauth2/code/authServer",
                 "http://localhost:3006", "http://localhost:3006/auth", "http://localhost:8000",
                 "http://localhost:8000/auth")
             .accessTokenValiditySeconds(3600)

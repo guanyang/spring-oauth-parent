@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.util.CollectionUtils;
 
 /**
  * 功能描述：
@@ -46,8 +47,11 @@ public class CustomAccessTokenConfig {
 
         @Override
         public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-            final Map<String, Object> additionalInfo = Maps.newHashMapWithExpectedSize(2);
             Authentication userAuthentication = authentication.getUserAuthentication();
+            if (userAuthentication == null || CollectionUtils.isEmpty(userAuthentication.getAuthorities())) {
+                return accessToken;
+            }
+            final Map<String, Object> additionalInfo = Maps.newHashMapWithExpectedSize(2);
             Set<String> authoritySet = AuthorityUtils.authorityListToSet(userAuthentication.getAuthorities());
             if (authoritySet.contains(AuthorityEnum.ADMIN.getAuthority())) {
                 additionalInfo.put("authorities", authoritySet);

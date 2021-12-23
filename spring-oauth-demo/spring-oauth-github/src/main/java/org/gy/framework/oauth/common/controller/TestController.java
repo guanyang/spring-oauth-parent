@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
-    @GetMapping("/")
-    public String root() {
-        return "forward:/index";
-    }
-
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String root() {
+//        return "forward:/index";
+//    }
+//
+//    @GetMapping("/index")
+//    public String index() {
+//        return "index";
+//    }
 
     @GetMapping("/test/page1")
     public String test(Model model) {

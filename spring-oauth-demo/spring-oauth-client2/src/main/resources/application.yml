@@ -2,20 +2,65 @@ auth-server: http://localhost:8881/auth
 server:
   port: 8883
   servlet:
-#    register-default-servlet: true
-    context-path: /client2
-security:
-  oauth2:
-    client:
-      clientId: client
-      clientSecret: secret
-      accessTokenUri: ${auth-server}/oauth/token
-      userAuthorizationUri: ${auth-server}/oauth/authorize
-    resource:
-      token-info-uri: ${auth-server}/oauth/check_token
-#      userInfoUri: ${auth-server}/api/user
-#      jwt:
-#        key-uri: ${auth-server}/oauth/token_key
+    context-path: /
 spring:
   thymeleaf:
     cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          authServer:
+            clientId: client
+            clientSecret: secret
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: user_info
+          wechat:
+            clientId: wxa16127bc21fee34d
+            clientSecret: 4b47518675a0c097b79dd3ef78a7c603
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: snsapi_userinfo
+          github:
+            clientId: 2c64c7edc5a8dc8847fd
+            clientSecret: dc5803f0b18c571c080e34d449086e66e39027e3
+#          google:
+#            clientId: ${GOOGLE_CLIENT_ID}
+#            clientSecret: ${GOOGLE_CLIENT_SECRET}
+#          facebook:
+#            clientId: ${FACEBOOK_CLIENT_ID}
+#            clientSecret: ${FACEBOOK_CLIENT_SECRET}
+#          okta:
+#            clientId: ${OKTA_CLIENT_ID}
+#            clientSecret: ${OKTA_CLIENT_SECRET}
+#            clientName: Okta
+#          linkedin:
+#            clientId: ${LINKEDIN_CLIENT_ID}
+#            clientSecret: ${LINKEDIN_CLIENT_SECRET}
+#            clientName: LinkedIn
+#            authorizationGrantType: authorization_code
+#            redirectUri: "{baseUrl}/login/oauth2/code/{registrationId}"
+#            scope: r_liteprofile, r_emailaddress
+        provider:
+          authServer:
+            authorizationUri: ${auth-server}/oauth/authorize
+            tokenUri: ${auth-server}/oauth/token
+            userInfoUri: ${auth-server}/api/user
+            userNameAttribute: name
+          wechat:
+            authorizationUri: https://open.weixin.qq.com/connect/oauth2/authorize
+            tokenUri: https://api.weixin.qq.com/sns/oauth2/access_token
+            userInfoUri: https://api.weixin.qq.com/sns/userinfo
+            userNameAttribute: openid
+          github:
+            authorizationUri: https://github.com/login/oauth/authorize
+            tokenUri: https://github.com/login/oauth/access_token
+            userInfoUri: https://api.github.com/user
+#          okta:
+#            issuerUri: https://${YOUR_OKTA_SUBDOMAIN:example}.okta.com/oauth2/default
+#          linkedin:
+#            authorizationUri: https://www.linkedin.com/oauth/v2/authorization
+#            tokenUri: https://www.linkedin.com/oauth/v2/accessToken
+#            userInfoUri: https://api.linkedin.com/v2/me
+#            userNameAttribute: id
